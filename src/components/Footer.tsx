@@ -5,9 +5,9 @@ export const Footer: React.FC = () => {
     <footer className="page-footer" role="contentinfo">
       <div className="footer-content">
         <div>
-          <strong>Interactive Game Theory Lab &bull; Free-Rider Problem Simulator</strong>
+          <strong>Interactive Game Theory Lab &bull; Project Team Formation Simulator</strong>
           <p>
-            An intuitive educational demonstration of individual rational incentives vs team cooperation in university group work.
+            An intuitive educational demonstration of strategic teammate selection, free-riding risks, and institutional policy design in university group projects.
           </p>
         </div>
         <div className="footer-meta">

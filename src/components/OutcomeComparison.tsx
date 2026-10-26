@@ -19,27 +19,27 @@ interface ScenarioMeta {
 const SCENARIO_DETAILS: Record<OutcomeKey, ScenarioMeta> = {
   HH: {
     key: "HH",
-    title: "Both Work on Project",
+    title: "Both Choose Hard-Working Teammates",
     summary:
-      "Both students contribute effort, generating high project quality and shared high grades.",
+      "Both students recruit diligent, committed teammates, producing superior project quality and shared high grades.",
   },
   HL: {
     key: "HL",
-    title: "Student A Works, Student B Slacks",
+    title: "Student A Chooses Hard-Working, Student B Chooses Lazy",
     summary:
-      "Student B free-rides without contributing, while Student A carries the entire project load.",
+      "Student B chooses a lazy partner and free-rides, while Student A's hard-working recruit shoulders the workload.",
   },
   LH: {
     key: "LH",
-    title: "Student A Slacks, Student B Works",
+    title: "Student A Chooses Lazy, Student B Chooses Hard-Working",
     summary:
-      "Student A free-rides without contributing, while Student B carries the entire project load.",
+      "Student A chooses a lazy partner and free-rides, while Student B's hard-working recruit shoulders the workload.",
   },
   LL: {
     key: "LL",
-    title: "Both Slack Off",
+    title: "Both Choose Lazy Teammates",
     summary:
-      "Neither student works. Nobody expends effort, but the final project grade is minimal.",
+      "Both students choose uncommitted teammates. The team project suffers from coordination failure and minimal grade outcomes.",
   },
 };
 
@@ -58,10 +58,10 @@ export const OutcomeComparison: React.FC<OutcomeComparisonProps> = ({
       <div className="card-header">
         <div className="card-title-group">
           <h2 id="outcome-comparison-heading" className="card-title">
-            All 4 Scenarios &amp; Total Team Score Comparison
+            All 4 Team Combinations &amp; Total Project Score Comparison
           </h2>
           <p className="card-subtitle">
-            Compare how individual effort decisions affect total team performance. Observe whether the Nash equilibrium produces the highest team score or falls into a free-rider trap.
+            Compare how teammate selection choices affect total team performance. Observe whether the Nash equilibrium produces the highest team score or falls into a lazy teammate trap.
           </p>
         </div>
       </div>
@@ -221,24 +221,24 @@ export const OutcomeComparison: React.FC<OutcomeComparisonProps> = ({
       <div className="insight-callout">
         <div className="insight-callout-icon" aria-hidden="true">💡</div>
         <div className="insight-callout-body">
-          <h4 className="insight-callout-title">Core Economic Insight</h4>
+          <h4 className="insight-callout-title">Core Team Formation Insight</h4>
           {analysis.prisonersDilemma.isPrisonersDilemma ? (
             <p>
-              In the baseline project without policy interventions, self-interest pulls both students to slack off (
+              In unregulated team formation without screening policies, private incentives pull both students to recruit lazy teammates (
               <strong>{fmt(matrix.LL.a)} pts each, {fmt(matrix.LL.a + matrix.LL.b)} pts total</strong>
-              ), even though working together (
+              ), even though both choosing hard-working teammates (
               <strong>{fmt(matrix.HH.a)} pts each, {fmt(matrix.HH.a + matrix.HH.b)} pts total</strong>
-              ) produces higher total team score! This mismatch between individual incentives and combined group payoff is the classic <strong>Free-Rider Problem</strong>.
+              ) produces double the team score! This wedge between individual recruitment incentives and collective group achievement is the classic <strong>Team Formation Dilemma</strong>.
             </p>
           ) : analysis.nash.includes("HH") &&
             analysis.maxWelfare.outcomes.includes("HH") ? (
             <p>
-              Under this incentive policy, individual self-interest directly aligns with team success! Mutual high effort is now the
-              <strong> Nash Equilibrium</strong>, unlocking the maximum total team score of <strong>{fmt(matrix.HH.a + matrix.HH.b)} points</strong>.
+              Under this institutional policy, individual teammate selection directly aligns with team success! Choosing a hard-working teammate is now the
+              <strong> Nash Equilibrium</strong>, unlocking the maximum total project score of <strong>{fmt(matrix.HH.a + matrix.HH.b)} points</strong>.
             </p>
           ) : analysis.nash.length === 0 ? (
             <p>
-              Under this payoff structure, there is <strong>no Nash equilibrium in pure strategies</strong>. Students face cyclical incentives to second-guess each other: whenever one changes effort, the other wants to switch in response.
+              Under this payoff structure, there is <strong>no Nash equilibrium in pure strategies</strong>. Students face cyclical incentives to second-guess each other's recruit: whenever one switches, the other wants to change partners in response.
             </p>
           ) : (
             <p>

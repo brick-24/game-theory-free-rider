@@ -154,8 +154,8 @@ export const PayoffMatrixComponent: React.FC<PayoffMatrixProps> = ({
         key={outcome}
         className={`matrix-cell ${isSelected ? "selected" : ""} ${isNash ? "is-nash" : ""}`}
         onClick={() => onSelectOutcome(outcome)}
-        aria-label={`Outcome Student A ${aAction === "H" ? "Work on project" : "Slack off"}, Student B ${
-          bAction === "H" ? "Work on project" : "Slack off"
+        aria-label={`Outcome Student A ${aAction === "H" ? "Choose Hard-Working Teammate" : "Choose Lazy Teammate"}, Student B ${
+          bAction === "H" ? "Choose Hard-Working Teammate" : "Choose Lazy Teammate"
         }. Student A score ${fmt(cell.a)}, Student B score ${fmt(cell.b)}.${isNash ? " Nash Equilibrium." : ""}`}
       >
         <div className="matrix-cell-header">
@@ -179,7 +179,7 @@ export const PayoffMatrixComponent: React.FC<PayoffMatrixProps> = ({
               onFocus={() => onSelectOutcome(outcome)}
               onChange={(val) => onCellChange(outcome, "A", val)}
               className="payoff-input payoff-input-a"
-              ariaLabel={`Score for Student A: ${aAction === "H" ? "Work" : "Slack"}`}
+              ariaLabel={`Score for Student A: ${aAction === "H" ? "Hard-Working" : "Lazy"}`}
             />
             <span className="payoff-subscript color-a" aria-hidden="true" title="Student A score">A</span>
           </div>
@@ -195,7 +195,7 @@ export const PayoffMatrixComponent: React.FC<PayoffMatrixProps> = ({
               onFocus={() => onSelectOutcome(outcome)}
               onChange={(val) => onCellChange(outcome, "B", val)}
               className="payoff-input payoff-input-b"
-              ariaLabel={`Score for Student B: ${bAction === "H" ? "Work" : "Slack"}`}
+              ariaLabel={`Score for Student B: ${bAction === "H" ? "Hard-Working" : "Lazy"}`}
             />
             <span className="payoff-subscript color-b" aria-hidden="true" title="Student B score">B</span>
           </div>
@@ -245,14 +245,14 @@ export const PayoffMatrixComponent: React.FC<PayoffMatrixProps> = ({
         </div>
 
         <p className="card-subtitle">
-          Values display (Student A Score, Student B Score). Click any cell to test it in the simulator, or edit numbers directly.
+          Values display (Student A Score, Student B Score) based on teammate selection. Click any cell to test it in the simulator, or edit numbers directly.
         </p>
       </div>
 
       <div className="matrix-container">
         <table
           className="matrix-table"
-          aria-label="Payoff matrix for Student A and Student B"
+          aria-label="Payoff matrix for Student A and Student B teammate selection"
         >
           <thead>
             <tr>
@@ -264,11 +264,11 @@ export const PayoffMatrixComponent: React.FC<PayoffMatrixProps> = ({
               </th>
               <th scope="col" className="matrix-header-col">
                 <span className="header-player-pill player-b-pill">Student B</span>
-                <span className="header-action-name">Work on Project</span>
+                <span className="header-action-name">Choose Hard-Working Teammate</span>
               </th>
               <th scope="col" className="matrix-header-col">
                 <span className="header-player-pill player-b-pill">Student B</span>
-                <span className="header-action-name">Slack Off</span>
+                <span className="header-action-name">Choose Lazy Teammate</span>
               </th>
             </tr>
           </thead>
@@ -276,7 +276,7 @@ export const PayoffMatrixComponent: React.FC<PayoffMatrixProps> = ({
             <tr>
               <th scope="row" className="matrix-header-row">
                 <span className="header-player-pill player-a-pill">Student A</span>
-                <span className="header-action-name">Work on Project</span>
+                <span className="header-action-name">Choose Hard-Working Teammate</span>
               </th>
               {renderCell("HH", "H", "H")}
               {renderCell("HL", "H", "L")}
@@ -284,7 +284,7 @@ export const PayoffMatrixComponent: React.FC<PayoffMatrixProps> = ({
             <tr>
               <th scope="row" className="matrix-header-row">
                 <span className="header-player-pill player-a-pill">Student A</span>
-                <span className="header-action-name">Slack Off</span>
+                <span className="header-action-name">Choose Lazy Teammate</span>
               </th>
               {renderCell("LH", "L", "H")}
               {renderCell("LL", "L", "L")}
@@ -311,8 +311,8 @@ export const PayoffMatrixComponent: React.FC<PayoffMatrixProps> = ({
         </div>
         <div className="matrix-summary-right">
           {analysis.nash.length > 0
-            ? "Neither student wants to change actions unilaterally."
-            : "Players have cycling incentives to switch."}
+            ? "Neither student wants to change their teammate choice unilaterally."
+            : "Students have cycling incentives to switch teammate choices."}
         </div>
       </div>
     </section>

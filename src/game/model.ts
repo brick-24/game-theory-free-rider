@@ -53,8 +53,8 @@ export const PARAM_META: readonly ParamMeta[] = [
   {
     key: 'gradeReward',
     symbol: 'R',
-    label: 'Project grade reward',
-    description: 'Grade points both students gain for each student who puts in high effort.',
+    label: 'Team project synergy gain',
+    description: 'Grade points both students gain for each hard-working teammate recruited.',
     min: 0,
     max: 10,
     step: 0.5,
@@ -63,8 +63,8 @@ export const PARAM_META: readonly ParamMeta[] = [
   {
     key: 'effortCost',
     symbol: 'C',
-    label: 'Personal effort cost',
-    description: 'Time and stress a student gives up by choosing high effort. Only the worker pays it.',
+    label: 'Coordination and effort cost',
+    description: 'Time and commitment spent vetting and working with a hard-working teammate.',
     min: 0,
     max: 10,
     step: 0.5,
@@ -74,7 +74,7 @@ export const PARAM_META: readonly ParamMeta[] = [
     key: 'freeRideBenefit',
     symbol: 'F',
     label: 'Free-riding benefit',
-    description: 'Extra value a student gets from easing off while the teammate carries the work.',
+    description: 'Extra value a student gets from easing off when partnering with a hard-working peer.',
     min: 0,
     max: 6,
     step: 0.5,
@@ -83,8 +83,8 @@ export const PARAM_META: readonly ParamMeta[] = [
   {
     key: 'lowPenalty',
     symbol: 'P',
-    label: 'Low-contribution penalty',
-    description: 'Deduction for any student who contributes low effort, for example from contribution logs.',
+    label: 'Lazy teammate penalty',
+    description: 'Grade deduction for fielding a lazy, uncooperative teammate under instructor oversight.',
     min: 0,
     max: 8,
     step: 0.5,
@@ -93,9 +93,9 @@ export const PARAM_META: readonly ParamMeta[] = [
   {
     key: 'peerEvaluation',
     symbol: 'V',
-    label: 'Peer evaluation',
+    label: 'Peer evaluation transfer',
     description:
-      'When contributions differ, teammates’ ratings move V points from the lower contributor to the higher one.',
+      'When teammates differ in effort, peer ratings move V points from the lazy contributor to the hard-working one.',
     min: 0,
     max: 6,
     step: 0.5,

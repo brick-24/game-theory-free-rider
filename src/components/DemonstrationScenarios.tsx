@@ -20,17 +20,17 @@ const PRESET_HIGHLIGHTS: Record<
 > = {
   none: {
     icon: "⚡",
-    badge: "Dilemma: Both Slack",
+    badge: "Dilemma: Lazy Teammates",
     badgeClass: "badge-warning",
   },
   peer: {
     icon: "👥",
-    badge: "Solution: Both Work",
+    badge: "Solution: Hard-Working",
     badgeClass: "badge-success",
   },
   reward: {
     icon: "🎁",
-    badge: "Solution: Both Work",
+    badge: "Solution: Hard-Working",
     badgeClass: "badge-success",
   },
 };
@@ -47,10 +47,10 @@ export const DemonstrationScenarios: React.FC<DemonstrationScenariosProps> = ({
       <div className="card-header">
         <div className="card-title-group">
           <h2 id="presets-heading" className="card-title">
-            Educational Demonstration: 3 Preset Policy Scenarios
+            Educational Demonstration: 3 Team Formation Policies
           </h2>
           <p className="card-subtitle">
-            Select a policy scenario to see how institutional rules change student incentives from mutual free-riding to active collaboration.
+            Select a team formation policy to see how institutional rules change student incentives from choosing lazy teammates to recruiting hard-working partners.
           </p>
         </div>
       </div>

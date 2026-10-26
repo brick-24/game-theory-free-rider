@@ -7,15 +7,13 @@ export const Header: React.FC = () => {
         Skip to main content
       </a>
       <div className="header-badge">
-        <span>University Economics &bull; Interactive Game Theory Lab</span>
+        <span>University Economics &bull; Game Theory Lab: Team Formation</span>
       </div>
       <h1 className="page-title">
-        The Free-Rider Problem: Work on Project or Slack Off?
+        Project Team Formation: Choosing People for Your Team
       </h1>
       <p className="page-description">
-        When two students collaborate on a group project, will they work together or slack off?
-        Grades are shared, but effort is individual. Explore how personal incentives shape teamwork,
-        and test policies that turn free-riding into cooperation.
+        When forming university project teams, who do you choose to recruit? Do you pick a hard-working teammate who commits to quality, or a lazy teammate who risks free-riding? Explore how personal incentives, screening costs, and team policies shape who gets chosen on project teams.
       </p>
     </header>
   );
