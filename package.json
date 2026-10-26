@@ -1,8 +1,8 @@
 {
-  "name": "project-team-formation-simulator",
+  "name": "free-rider-simulator",
   "private": true,
   "version": "1.0.0",
-  "description": "Interactive game theory simulator: strategic team formation and choosing teammates in university projects.",
+  "description": "Interactive game theory simulator: the free-rider problem in university group projects.",
   "type": "module",
   "scripts": {
     "dev": "vite",

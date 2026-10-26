@@ -39,7 +39,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
   };
 
   const otherActionText = (action: Action) =>
-    action === "H" ? "Choose Lazy Teammate" : "Choose Hard-Working Teammate";
+    action === "H" ? "Slack off" : "Work on project";
 
   return (
     <section className="card" aria-labelledby="simulator-heading">
@@ -50,7 +50,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
           </h2>
         </div>
         <p className="card-subtitle">
-          Toggle who each student chooses for their team. See individual scores, total team performance, and incentives to switch partners.
+          Toggle what each student chooses. See individual scores, total team performance, and incentives to switch.
         </p>
       </div>
 
@@ -62,13 +62,13 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
           <div className="player-panel-header">
             <span className="player-panel-title label-a">
               <span className="player-indicator-dot dot-a" aria-hidden="true" />
-              Student A Teammate Choice
+              Student A Strategy
             </span>
           </div>
           <div
             className="segmented-control"
             role="group"
-            aria-label="Student A Teammate Decision"
+            aria-label="Student A Decision"
           >
             <button
               type="button"
@@ -76,7 +76,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
               onClick={() => handleSelectA("H")}
               aria-pressed={currentA === "H"}
             >
-              Choose Hard-Working Teammate
+              Work on project
             </button>
             <button
               type="button"
@@ -84,7 +84,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
               onClick={() => handleSelectA("L")}
               aria-pressed={currentA === "L"}
             >
-              Choose Lazy Teammate
+              Slack off
             </button>
           </div>
         </div>
@@ -94,13 +94,13 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
           <div className="player-panel-header">
             <span className="player-panel-title label-b">
               <span className="player-indicator-dot dot-b" aria-hidden="true" />
-              Student B Teammate Choice
+              Student B Strategy
             </span>
           </div>
           <div
             className="segmented-control"
             role="group"
-            aria-label="Student B Teammate Decision"
+            aria-label="Student B Decision"
           >
             <button
               type="button"
@@ -108,7 +108,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
               onClick={() => handleSelectB("H")}
               aria-pressed={currentB === "H"}
             >
-              Choose Hard-Working Teammate
+              Work on project
             </button>
             <button
               type="button"
@@ -116,7 +116,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
               onClick={() => handleSelectB("L")}
               aria-pressed={currentB === "L"}
             >
-              Choose Lazy Teammate
+              Slack off
             </button>
           </div>
         </div>
@@ -131,7 +131,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
           <div className="stat-box-incentive">
             {compare(devA, 0) > 0 ? (
               <span className="incentive-gain">
-                ⚠ Wants to switch: +{fmt(devA)} pts if switching to {otherActionText(currentA)}
+                Wants to switch: +{fmt(devA)} pts if switching to {otherActionText(currentA)}
               </span>
             ) : compare(devA, 0) < 0 ? (
               <span className="incentive-loss">
@@ -152,7 +152,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
           <div className="stat-box-incentive">
             {compare(devB, 0) > 0 ? (
               <span className="incentive-gain">
-                ⚠ Wants to switch: +{fmt(devB)} pts if switching to {otherActionText(currentB)}
+                Wants to switch: +{fmt(devB)} pts if switching to {otherActionText(currentB)}
               </span>
             ) : compare(devB, 0) < 0 ? (
               <span className="incentive-loss">
@@ -173,7 +173,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
           <div className="stat-box-incentive">
             {isBestForTeam ? (
               <span className="incentive-loss">
-                🏆 Highest possible team score
+                Highest possible team score
               </span>
             ) : (
               <span className="incentive-neutral">
@@ -190,7 +190,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
         className={`stability-banner ${isNash ? "is-nash" : "unstable"}`}
         role="status"
       >
-        <div className="stability-icon" aria-hidden="true">{isNash ? "✓" : "⚠"}</div>
+        <div className="stability-icon" aria-hidden="true">{isNash ? "✓" : "!"}</div>
         <div className="stability-content">
           {isNash ? (
             <div>
@@ -198,7 +198,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
                 Selected outcome ({outcomeShort(selectedOutcome)}) is a Nash Equilibrium!
               </strong>
               <p className="stability-desc">
-                Neither student can improve their score by unilaterally switching to a different teammate. Given what their partner chose, each student's current teammate choice is a mutual best response.
+                Neither student can improve their score by unilaterally switching to another action. Given what their partner is doing, each student's current action is a mutual best response.
               </p>
             </div>
           ) : (
@@ -208,7 +208,7 @@ export const StrategySimulator: React.FC<StrategySimulatorProps> = ({
               </strong>
               <p className="stability-desc">
                 {compare(devA, 0) > 0 && compare(devB, 0) > 0
-                  ? `Both students would earn more points by switching teammates (Student A: +${fmt(devA)} pts, Student B: +${fmt(devB)} pts).`
+                  ? `Both students would earn more points by switching (Student A: +${fmt(devA)} pts, Student B: +${fmt(devB)} pts).`
                   : compare(devA, 0) > 0
                     ? `Student A would earn more points (+${fmt(devA)} pts) by switching to ${otherActionText(currentA)}.`
                     : `Student B would earn more points (+${fmt(devB)} pts) by switching to ${otherActionText(currentB)}.`}

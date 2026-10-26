@@ -16,21 +16,18 @@ interface DemonstrationScenariosProps {
 
 const PRESET_HIGHLIGHTS: Record<
   string,
-  { badge: string; badgeClass: string; icon: string }
+  { badge: string; badgeClass: string }
 > = {
   none: {
-    icon: "⚡",
-    badge: "Dilemma: Lazy Teammates",
+    badge: "Dilemma: Both Slack",
     badgeClass: "badge-warning",
   },
   peer: {
-    icon: "👥",
-    badge: "Solution: Hard-Working",
+    badge: "Solution: Both Work",
     badgeClass: "badge-success",
   },
   reward: {
-    icon: "🎁",
-    badge: "Solution: Hard-Working",
+    badge: "Solution: Both Work",
     badgeClass: "badge-success",
   },
 };
@@ -47,10 +44,10 @@ export const DemonstrationScenarios: React.FC<DemonstrationScenariosProps> = ({
       <div className="card-header">
         <div className="card-title-group">
           <h2 id="presets-heading" className="card-title">
-            Educational Demonstration: 3 Team Formation Policies
+            Educational Demonstration: 3 Preset Policy Scenarios
           </h2>
           <p className="card-subtitle">
-            Select a team formation policy to see how institutional rules change student incentives from choosing lazy teammates to recruiting hard-working partners.
+            Select a policy scenario to see how institutional rules change student incentives from mutual free-riding to active collaboration.
           </p>
         </div>
       </div>
@@ -62,7 +59,6 @@ export const DemonstrationScenarios: React.FC<DemonstrationScenariosProps> = ({
           const scenarioAnalysis = analyzeGame(scenarioMatrix);
           const isActive = activeScenarioId === scenario.id;
           const meta = PRESET_HIGHLIGHTS[scenario.id] || {
-            icon: "📋",
             badge: "Policy Preset",
             badgeClass: "badge-info",
           };
@@ -91,7 +87,6 @@ export const DemonstrationScenarios: React.FC<DemonstrationScenariosProps> = ({
             >
               <div className="preset-card-top">
                 <div className="preset-title-row">
-                  <span className="preset-icon" aria-hidden="true">{meta.icon}</span>
                   <h3 className="preset-title">{scenario.title}</h3>
                 </div>
                 {isActive ? (

@@ -1,0 +1,679 @@
+/* ==========================================================================
+   Team formation sections. Built on the tokens in index.css.
+   ========================================================================== */
+
+:root {
+  /* Motion tokens: strong ease-out for UI. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.tf-card {
+  gap: 1.75rem;
+}
+
+/* ---- Section heading ---- */
+.tf-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 68ch;
+}
+.tf-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.tf-title {
+  font-size: clamp(1.5rem, 2.6vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+.tf-lede {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+/* ---- Controls ---- */
+.tf-controls {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem 2rem;
+}
+@media (min-width: 640px) {
+  .tf-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .tf-controls {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.tf-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+.tf-slider-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+.tf-slider-top label {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.tf-slider-top output {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-accent);
+}
+.tf-hint {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+/* Range input: thin track with an accent fill up to the thumb. */
+.tf-slider input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+.tf-slider input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--color-accent) var(--fill), #dcdce1 var(--fill));
+}
+.tf-slider input[type='range']::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--color-accent) var(--fill), #dcdce1 var(--fill));
+}
+.tf-slider input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -9px;
+  border-radius: 50%;
+  background: #fff;
+  border: 0.5px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0.5px 4px rgba(0, 0, 0, 0.12), 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+.tf-slider input[type='range']::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 0.5px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0.5px 4px rgba(0, 0, 0, 0.12), 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+.tf-slider input[type='range']:focus-visible {
+  outline: none;
+}
+.tf-slider input[type='range']:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.3), 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+.tf-slider input[type='range']:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.3), 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ---- Segmented control ---- */
+.tf-rule-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.tf-seg {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+  padding: 2px;
+  border-radius: 9px;
+  background: rgba(118, 118, 128, 0.12);
+  flex: 1 1 520px;
+  min-width: 0;
+}
+.tf-seg-thumb {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  width: calc((100% - 4px) / var(--count));
+  transform: translateX(calc(100% * var(--index)));
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12), 0 3px 1px rgba(0, 0, 0, 0.04);
+  /* State indication: the selected pill slides to the new option. */
+  transition: transform 200ms var(--ease-out);
+}
+.tf-seg-btn {
+  transition: transform 120ms var(--ease-out);
+  position: relative;
+  z-index: 1;
+  min-height: 36px;
+  padding: 0.4rem 0.6rem;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: 7px;
+  overflow-wrap: anywhere;
+}
+.tf-seg-btn[aria-checked='true'] {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.tf-seg-btn:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 1px;
+}
+
+/* ---- Two-column split ---- */
+.tf-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .tf-split {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  }
+}
+.tf-split > * {
+  min-width: 0;
+}
+
+/* ---- Class view ---- */
+.tf-class {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.tf-class-head,
+.tf-team {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) 9.5rem;
+  align-items: center;
+  gap: 0.75rem;
+}
+.tf-class-head {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: 0 0.75rem;
+}
+.tf-team-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.tf-team {
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-md);
+  background: #fafafc;
+  border: 1px solid var(--color-border-subtle);
+}
+.tf-team-rank {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+.tf-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.tf-chip {
+  will-change: transform;
+  display: inline-grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  position: relative;
+  flex: none;
+}
+.tf-chip.is-under {
+  outline: 2px dashed #8e6a00;
+  outline-offset: 2px;
+}
+.tf-chip.is-blocking {
+  box-shadow: 0 0 0 2.5px #fff, 0 0 0 4.5px #e08a00;
+}
+.tf-chip.tf-chip-sm {
+  width: 0.85rem;
+  height: 0.85rem;
+  font-size: 0;
+  vertical-align: -2px;
+}
+.tf-chip-sm.is-under {
+  outline-width: 1.5px;
+  outline-offset: 1px;
+}
+.tf-chip-sm.is-blocking {
+  box-shadow: 0 0 0 1.5px #fff, 0 0 0 3px #e08a00;
+}
+.tf-grade {
+  display: grid;
+  grid-template-columns: 1fr 2.6rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+.tf-grade-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #e8e8ed;
+  overflow: hidden;
+}
+.tf-grade-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  transform-origin: left center;
+}
+.tf-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.tf-class-head .tf-num {
+  font-weight: 600;
+  font-size: inherit;
+}
+.tf-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+  padding: 0.25rem 0.75rem 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+.tf-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ---- Side panel ---- */
+.tf-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.tf-aside-block h3,
+.tf-members-head h3,
+.tf-chart-block h3,
+.tf-compare-head h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+.tf-aside-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+.tf-aside-block strong {
+  color: var(--color-text-primary);
+}
+.tf-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.6rem;
+}
+.tf-facts.is-stack {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  .tf-facts.is-stack {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.tf-fact {
+  transition: background-color 150ms ease, border-color 150ms ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: var(--radius-md);
+  background: #fafafc;
+  border: 1px solid var(--color-border-subtle);
+}
+.tf-fact.is-good {
+  background: var(--color-success-bg);
+  border-color: var(--color-success-border);
+}
+.tf-fact.is-warn {
+  background: var(--color-warning-bg);
+  border-color: #fde68a;
+}
+.tf-fact-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+}
+.tf-fact-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary);
+}
+.tf-fact-note {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+.tf-small {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* ---- Comparison ---- */
+.tf-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border-subtle);
+}
+.tf-compare-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.tf-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-success-text);
+}
+.tf-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.tf-status.is-busy {
+  color: var(--color-text-muted);
+}
+.tf-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  background: #fff;
+}
+.tf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+.tf-table th,
+.tf-table td {
+  padding: 0.7rem 0.85rem;
+  text-align: right;
+  border-bottom: 1px solid var(--color-border-subtle);
+  white-space: nowrap;
+}
+.tf-table thead th {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: #fafafc;
+  white-space: normal;
+  vertical-align: bottom;
+}
+.tf-table th:first-child,
+.tf-table td:first-child {
+  text-align: left;
+}
+.tf-table tbody th {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.tf-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.tf-table td.is-best {
+  color: var(--color-success-text);
+  font-weight: 700;
+}
+.tf-table td.is-na {
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+}
+.tf-findings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem 1.15rem 1rem 2.1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-info-bg);
+  border: 1px solid var(--color-info-border);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+.tf-findings strong {
+  color: var(--color-text-primary);
+}
+
+/* ---- Stage 2: members against thresholds ---- */
+.tf-members {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.tf-members-head p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+.tf-scale {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 1.9rem;
+  --name: 5.5rem;
+  --pill: 6.5rem;
+}
+.tf-member {
+  display: grid;
+  grid-template-columns: var(--name) minmax(0, 1fr) var(--pill);
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2rem;
+}
+.tf-member-name {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+.tf-member-track {
+  position: relative;
+  height: 10px;
+  border-radius: 5px;
+  background: #ececf1;
+  overflow: hidden;
+}
+.tf-member-bar {
+  position: absolute;
+  inset: 0;
+  background: #8e8e93;
+  border-radius: 5px;
+  transform-origin: left center;
+}
+.tf-pill {
+  justify-self: end;
+  /* State indication: colour cross-fade when a student crosses the threshold. No movement. */
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.tf-pill.is-work {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
+}
+.tf-pill.is-shirk {
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  border: 1px solid #fde68a;
+}
+/* Threshold markers sit over the bar column only. */
+.tf-marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  /* --at is 0–1 along the bar column, which sits between the name and the pill. */
+  left: calc(var(--name) + 0.75rem + (100% - var(--name) - var(--pill) - 1.5rem) * var(--at));
+  pointer-events: none;
+  z-index: 1;
+}
+.tf-marker::after {
+  content: '';
+  position: absolute;
+  top: 1.45rem;
+  bottom: 0;
+  left: -1px;
+  border-left: 2px solid currentColor;
+}
+.tf-marker > span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background: #fff;
+}
+.tf-marker.is-private {
+  color: var(--color-accent);
+}
+.tf-marker.is-team {
+  color: var(--color-success-solid);
+}
+.tf-marker.is-team::after {
+  border-left-style: dashed;
+}
+
+.tf-chart-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.tf-chart {
+  width: 100%;
+  height: 300px;
+}
+
+/* Press feedback: instant on pointer-down. */
+.tf-press:active,
+.tf-seg-btn:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 639px) {
+  .tf-class-head,
+  .tf-team {
+    grid-template-columns: 1.4rem minmax(0, 1fr) 5.5rem;
+    gap: 0.5rem;
+  }
+  .tf-grade {
+    grid-template-columns: 1fr 2.4rem;
+  }
+  .tf-chip {
+    width: 1.85rem;
+    height: 1.85rem;
+    font-size: 0.6875rem;
+  }
+  .tf-scale {
+    --name: 4.3rem;
+    --pill: 5.6rem;
+  }
+}
+
+/* Phone-width fix for the original segmented controls: let buttons shrink and wrap. */
+.segmented-control {
+  min-width: 0;
+  max-width: 100%;
+}
+.segmented-control .segmented-btn {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.dashboard-grid > *,
+.app-main > * {
+  min-width: 0;
+}
+
+/* Theory tabs (original component, CSS only): bridge the instant content swap. */
+.theory-panel,
+.theory-body {
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+}
+@starting-style {
+  .theory-panel,
+  .theory-body {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the fade, drop the movement. */
+  @starting-style {
+    .theory-panel,
+    .theory-body {
+      transform: none;
+    }
+  }
+}

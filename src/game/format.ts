@@ -32,14 +32,8 @@ export function fmtOrList(items: string[]): string {
   return orListFormat.format(items);
 }
 
-export const ACTION_LABEL: Record<Action, string> = {
-  H: 'Choose Hard-Working Teammate',
-  L: 'Choose Lazy Teammate',
-};
-export const ACTION_SHORT: Record<Action, string> = {
-  H: 'Hard-Working',
-  L: 'Lazy',
-};
+export const ACTION_LABEL: Record<Action, string> = { H: 'Work on project', L: 'Slack off' };
+export const ACTION_SHORT: Record<Action, string> = { H: 'Work', L: 'Slack' };
 
 /** Compact label, Student A first: “High / Low”. */
 export function outcomeShort(k: OutcomeKey): string {

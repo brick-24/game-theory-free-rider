@@ -6,6 +6,8 @@ import { StrategySimulator } from './components/StrategySimulator';
 import { GameTheoryGuide } from './components/GameTheoryGuide';
 import { OutcomeComparison } from './components/OutcomeComparison';
 import { Footer } from './components/Footer';
+import { TeamFormationLab } from './components/team/TeamFormationLab';
+import { TeamEffortLab } from './components/team/TeamEffortLab';
 
 import {
   DEFAULT_MATRIX,
@@ -89,6 +91,9 @@ export const App: React.FC = () => {
       <Header />
 
       <main id="main" className="app-main">
+        {/* Stage 1: Team formation (who teams up with whom) */}
+        <TeamFormationLab />
+
         {/* Module 1: Educational Demonstration (3 Policy Presets) */}
         <DemonstrationScenarios
           currentParams={params}
@@ -127,6 +132,9 @@ export const App: React.FC = () => {
           selectedOutcome={selectedOutcome}
           onSelectOutcome={setSelectedOutcome}
         />
+
+        {/* Stage 2 extended: effort in teams of any size */}
+        <TeamEffortLab />
       </main>
 
       <Footer />

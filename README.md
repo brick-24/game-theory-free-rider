@@ -61,31 +61,45 @@ npm test
 npm run build
 ```
 
+
 ---
 
-## Deploy to Vercel
+## Stage 1: Team formation (added)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbrick-24%2Fgame-theory-free-rider)
+Before the effort game is played, students have to be split into teams. This section models that as a
+coalition-formation game and compares four rules on the same randomly generated classes.
 
-This project is pre-configured for instant deployment on [Vercel](https://vercel.com).
+**Model.** T teams of k students. Skill `s ∈ [0, 1]`. Team quality `Q = (1 − β)·mean(skill) + β·max(skill)`,
+where β is how much the strongest member carries the project. Team grade `G = 40 + 40·Q + M·(share who work)`.
 
-### Method 1: Vercel Dashboard (Recommended)
-1. Go to [vercel.com](https://vercel.com) and sign in with your GitHub account.
-2. Click **Add New...** &rarr; **Project**.
-3. Under **Import Git Repository**, select **`brick-24/game-theory-free-rider`**.
-4. Vercel automatically detects the **Vite** framework preset:
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-5. Click **Deploy**. Your app will be live on an HTTPS domain (e.g. `game-theory-free-rider.vercel.app`) with automatic CI/CD on every `git push`.
+| Rule | How teams form | Strategic behaviour |
+|---|---|---|
+| Random | Shuffle and cut | None possible |
+| Free choice | Students choose; everyone prefers skilled teammates | The strongest k team up, then the next k, so the class sorts by skill |
+| Balanced (self-report) | Snake-order deal on declared skill | Strong students understate their skill to be dealt into a stronger team |
+| Balanced (verified) | Snake-order deal on past grades | None possible |
 
-### Method 2: Vercel CLI
-Deploy directly from your terminal:
-```bash
-# Preview deployment
-npx vercel
+**Measures** (averaged over 40 classes, computed live): average grade, best − worst team gap, weakest 10%,
+share of classes that are **core-stable** (no group of k students all prefer to form their own team), and the
+grade a top-third student gains by understating skill with everyone else fixed (a unilateral deviation).
 
-# Production deployment
-npx vercel --prod
+**Stability is checked exactly.** With β < 1 and distinct skills, a partition is stable if and only if it is the
+skill-sorted one. The test suite verifies the fast check against brute force over every possible group.
+
+## Stage 2 extended: effort in teams of any size (added)
+
+Each worker adds `M/n` to every member's grade but pays their own cost `c_i` (uniform on [2, 14]). Peer evaluation
+moves `V` marks from shirkers to workers (a pure transfer). Working is a dominant strategy iff `M/n + V > c_i`;
+it is best for the team iff `M > c_i`. The chart shows the exact equilibrium share of workers by team size.
+
+### Added files
+
 ```
-
-
+src/team/model.ts                 Team formation + N-player effort model (no React)
+src/team/model.test.ts            14 tests, incl. brute-force stability check
+src/team/rng.ts                   Seeded random numbers (reproducible)
+src/team/worker.ts                Runs the 40-class comparison off the main thread
+src/team/useComparison.ts         Worker hook: one job in flight, latest settings only
+src/components/team/              Stage 1 and Stage 2 (N-player) sections
+src/team.css                      Styles for the added sections
+```

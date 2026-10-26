@@ -1,6 +1,4 @@
 node_modules
 dist
 *.log
-.vercel
-.env*.local
-team-formation-lab
+

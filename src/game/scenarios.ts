@@ -19,23 +19,23 @@ export interface Scenario {
 export const SCENARIOS: readonly Scenario[] = [
   {
     id: "none",
-    title: "Unregulated Team Formation (Base)",
+    title: "No incentives (Base)",
     summary:
-      "Students choose teammates freely without accountability. The temptation to pick a lazy friend while relying on the other student's recruit traps both teams in mutual underperformance.",
+      "Students bear their own effort costs and share the grade, so either can benefit from the other’s work. This is the reference game.",
     incentives: { lowPenalty: 0, peerEvaluation: 0, contributionReward: 0 },
   },
   {
     id: "peer",
-    title: "Peer Evaluation Policy",
+    title: "Peer evaluation",
     summary:
-      "Teammates rate each other. Selecting a lazy teammate incurs a 2-point penalty, and 1 point transfers from the lower contributor to the higher one, making choosing a hard-working teammate the unique equilibrium.",
+      "Teammates rate each other. Low contribution now costs a 2-point penalty, and when contributions differ, 1 point moves from the lower contributor to the higher one.",
     incentives: { lowPenalty: 2, peerEvaluation: 1, contributionReward: 0 },
   },
   {
     id: "reward",
-    title: "Team Contribution Reward",
+    title: "Contribution reward",
     summary:
-      "The instructor adds 3 bonus marks for each student who recruits a hard-working teammate. Choosing hard-working teammates becomes strictly dominant and maximizes total team scores.",
+      "The instructor adds 3 bonus marks for each student who contributes high effort. Nobody is penalised.",
     incentives: { lowPenalty: 0, peerEvaluation: 0, contributionReward: 3 },
   },
 ];

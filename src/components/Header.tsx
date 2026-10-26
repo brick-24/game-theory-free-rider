@@ -7,13 +7,15 @@ export const Header: React.FC = () => {
         Skip to main content
       </a>
       <div className="header-badge">
-        <span>University Economics &bull; Game Theory Lab: Team Formation</span>
+        <span>University Economics &bull; Interactive Game Theory Lab</span>
       </div>
       <h1 className="page-title">
-        Project Team Formation: Choosing People for Your Team
+        Strategic Behaviour in Project Team Formation
       </h1>
       <p className="page-description">
-        When forming university project teams, who do you choose to recruit? Do you pick a hard-working teammate who commits to quality, or a lazy teammate who risks free-riding? Explore how personal incentives, screening costs, and team policies shape who gets chosen on project teams.
+        A group project is a two-stage game. First, students sort themselves into teams, and every student
+        wants strong teammates. Then, inside each team, grades are shared but effort is individual, so
+        students are tempted to free-ride. Explore both stages and test the rules that fix them.
       </p>
     </header>
   );
