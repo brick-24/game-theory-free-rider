@@ -61,3 +61,31 @@ npm test
 npm run build
 ```
 
+---
+
+## Deploy to Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbrick-24%2Fgame-theory-free-rider)
+
+This project is pre-configured for instant deployment on [Vercel](https://vercel.com).
+
+### Method 1: Vercel Dashboard (Recommended)
+1. Go to [vercel.com](https://vercel.com) and sign in with your GitHub account.
+2. Click **Add New...** &rarr; **Project**.
+3. Under **Import Git Repository**, select **`brick-24/game-theory-free-rider`**.
+4. Vercel automatically detects the **Vite** framework preset:
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. Click **Deploy**. Your app will be live on an HTTPS domain (e.g. `game-theory-free-rider.vercel.app`) with automatic CI/CD on every `git push`.
+
+### Method 2: Vercel CLI
+Deploy directly from your terminal:
+```bash
+# Preview deployment
+npx vercel
+
+# Production deployment
+npx vercel --prod
+```
+
+
