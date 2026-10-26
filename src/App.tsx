@@ -5,9 +5,7 @@ import { PayoffMatrixComponent } from './components/PayoffMatrix';
 import { StrategySimulator } from './components/StrategySimulator';
 import { GameTheoryGuide } from './components/GameTheoryGuide';
 import { OutcomeComparison } from './components/OutcomeComparison';
-import { Footer } from './components/Footer';
 import { TeamFormationLab } from './components/team/TeamFormationLab';
-import { TeamEffortLab } from './components/team/TeamEffortLab';
 
 import {
   DEFAULT_MATRIX,
@@ -132,12 +130,7 @@ export const App: React.FC = () => {
           selectedOutcome={selectedOutcome}
           onSelectOutcome={setSelectedOutcome}
         />
-
-        {/* Stage 2 extended: effort in teams of any size */}
-        <TeamEffortLab />
       </main>
-
-      <Footer />
     </div>
   );
 };
